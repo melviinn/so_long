@@ -115,8 +115,8 @@ typedef struct s_game
 
 /* Check maps */
 void		check_map(t_game *g);
-void		check_map_len(char *av, t_game *g);
-int			check_path(t_game *g);
+int			check_map_len(char *av, t_game *g);
+void		check_path(t_game *g);
 
 /* Initialisation */
 void		init_map(t_game *g, char *av);
@@ -136,6 +136,7 @@ void		check_args(int ac, char **av, t_game *g);
 void		destroy_images(t_game *g);
 void		free_all_allocated_memory(t_game *g);
 void		free_map(t_game *g);
+void		free_grid(char **grid);
 
 /* Events */
 int			close_handler(t_game *g);

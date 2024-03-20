@@ -19,6 +19,8 @@ static void	check_rows(t_game *g)
 	if (!g)
 		error_msg("struct t_game NULL", g);
 	i = 0;
+	if (g->map.rows > 31)
+		error_msg("Invalid Map. too many rows.", g);
 	while (i < g->map.rows)
 	{
 		if (g->map.map[i][0] != WALL)
@@ -36,6 +38,8 @@ static void	check_columns(t_game *g)
 	if (!g)
 		error_msg("Pointeur NULL", g);
 	i = 0;
+	if (g->map.columns > 60)
+		error_msg("Invalid Map. too many columns.", g);
 	while (i < g->map.columns)
 	{
 		if (g->map.map[0][i] != WALL)

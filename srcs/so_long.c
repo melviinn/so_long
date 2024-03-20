@@ -25,8 +25,7 @@ int	main(int ac, char **av)
 	init_map(game, av[1]);
 	init_vars(game);
 	check_map(game);
-	if (check_path(game) == 1)
-		error_msg("Invalid Map. There is no valid path", game);
+	check_path(game);
 	init_game(game);
 	init_sprites(game);
 	render_map(game);

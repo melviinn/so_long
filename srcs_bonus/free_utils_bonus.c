@@ -32,6 +32,16 @@ void	free_map(t_game *g)
 	free(g->map.map);
 }
 
+void	free_grid(char **grid)
+{
+	int	i;
+
+	i = -1;
+	while (grid[++i] != NULL)
+		free(grid[i]);
+	free(grid);
+}
+
 void	destroy_images(t_game *g)
 {
 	mlx_destroy_image(g->mlx, g->wall.xpm_ptr);

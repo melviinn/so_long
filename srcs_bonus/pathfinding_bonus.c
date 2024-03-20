@@ -12,20 +12,53 @@
 
 #include "../includes/so_long_bonus.h"
 
-static char	check_surrounding(int y, int x, t_game *g)
+static char	**init_grid(t_game *g)
 {
-	if (g->map.map[y][x] == WALL)
-		return (1);
-	return (0);
+	int		i;
+	char	**grid;
+
+	i = 0;
+	grid = ft_calloc((g->map.rows + 1), sizeof(char *));
+	if (!grid)
+		return (NULL);
+	while (i < g->map.rows)
+	{
+		grid[i] = ft_strdup(g->map.map[i]);
+		if (!grid[i])
+			return (free_grid(grid), NULL);
+		i++;
+	}
+	return (grid);
 }
 
-int	check_path(t_game *g)
+static int	flood_fill(t_map *map, int pos_x, int pos_y, char **grid)
 {
-	if (check_surrounding(g->map.player.y + 1, g->map.player.x, g) == 1)
-		if (check_surrounding(g->map.player.y, g->map.player.x + 1, g) == 1)
-			if (check_surrounding(g->map.player.y - 1, g->map.player.x, g) == 1)
-				if (check_surrounding(g->map.player.y, g->map.player.x - 1,
-						g) == 1)
-					return (1);
-	return (0);
+	static int	coins = 0;
+	static int	found_exit = 0;
+
+	if (grid[pos_y][pos_x] == WALL)
+		return (0);
+	else if (grid[pos_y][pos_x] == COINS)
+		coins++;
+	else if (grid[pos_y][pos_x] == EXIT)
+		return (found_exit = 1);
+	grid[pos_y][pos_x] = WALL;
+	flood_fill(map, pos_x + 1, pos_y, grid);
+	flood_fill(map, pos_x - 1, pos_y, grid);
+	flood_fill(map, pos_x, pos_y + 1, grid);
+	flood_fill(map, pos_x, pos_y - 1, grid);
+	return (coins == map->coins && found_exit);
+}
+
+void	check_path(t_game *g)
+{
+	char	**grid;
+
+	grid = init_grid(g);
+	if (!flood_fill(&g->map, g->map.player.x, g->map.player.y, grid))
+	{
+		free_grid(grid);
+		error_msg("Invalid Path: The map is not playable", g);
+	}
+	free_grid(grid);
 }

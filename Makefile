@@ -13,13 +13,13 @@
 SRCS				:=	srcs/so_long.c		srcs/check_maps.c		srcs/init_game.c \
 						srcs/init_map.c		srcs/utils.c			srcs/render.c \
 						srcs/input.c		srcs/free_utils.c		srcs/movements.c \
-						srcs/pathfinding.c	srcs/check_map_len.c	get_next_line/get_next_line.c \
+						srcs/pathfinding.c	srcs/check_maps_2.c	get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c
 
 SRCS_BONUS			:=	srcs_bonus/so_long_bonus.c			srcs_bonus/check_maps_bonus.c		srcs_bonus/init_game_bonus.c \
 						srcs_bonus/init_map_bonus.c			srcs_bonus/utils_bonus.c			srcs_bonus/render_bonus.c \
 						srcs_bonus/input_bonus.c			srcs_bonus/free_utils_bonus.c		srcs_bonus/movements_bonus.c \
-						srcs_bonus/check_map_len_bonus.c	srcs_bonus/pathfinding_bonus.c		srcs_bonus/animation_bonus.c \
+						srcs_bonus/check_map_2_bonus.c		srcs_bonus/pathfinding_bonus.c		srcs_bonus/animation_bonus.c \
 						get_next_line/get_next_line.c		get_next_line/get_next_line_utils.c
 
 COMMON_SRCS_BONUS	:=	srcs_bonus/so_long_bonus.c		srcs_bonus/check_maps_bonus.c		srcs_bonus/init_game_bonus.c \
